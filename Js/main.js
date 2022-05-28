@@ -49,6 +49,7 @@ form.addEventListener('submit', (e) => {
 
     let email = document.querySelector('#email input').value;
     const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    let lastEmail = document.querySelector('.assigned-email').innerHTML
 
     if(!email.match(regex)) {
 
@@ -57,17 +58,37 @@ form.addEventListener('submit', (e) => {
         // console.log(email);
         // test to see whether the email address actually shows up on failure
 
-    }
-});
-
-form.addEventListener('submit', (e) => {
-
-    let email = document.querySelector('#email input').value;
-
-    if(email === '') {
+    } if(email === '') {
 
         e.preventDefault();
         document.querySelector('.error').innerHTML = `<i class="far fa-times-circle"></i> We can't email you if you don't put in an email address!`;
 
+    } if(email.match(regex) && email === email) {
+
+        document.querySelector('.error').innerHTML = ``;
+        e.preventDefault();
+        document.querySelector('.assigned-email').innerHTML = email;
+        document.querySelector('.assign-to-email').insertAdjacentHTML('beforeend', 
+            `<img src="` + img.src + `" alt="thumbnail of emailed image" class="small-img">`
+        );
+    } if(email.match(regex) && lastEmail !== email) {
+
+        let addImg = function () {
+
+            document.querySelector('.assign-to-email').insertAdjacentHTML('beforeend', 
+            `<img src="` + img.src + `" alt="thumbnail of emailed image" class="small-img">`
+            );
+        };
+
+        document.querySelector('.error').innerHTML = ``;
+        e.preventDefault();
+        document.querySelector('#assigned-wrapper').insertAdjacentHTML('beforeend', 
+            ` <div class="assign-to-email">
+                <div class="assigned-email">` + email + `</div>`
+               + addImg() +
+            `</div>`
+        );
     }
 });
+
+//for loop for the cloned assign to email divs?
