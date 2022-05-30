@@ -49,7 +49,12 @@ form.addEventListener('submit', (e) => {
 
     let email = document.querySelector('#email input').value;
     const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    let lastEmail = document.querySelector('.assigned-email').innerHTML
+    let assignEmail = document.querySelectorAll('.assigned-email');
+    let assignImg = document.querySelectorAll('.assign-to-email');
+    // console.log(assignEmail.length);
+    // console.log(email);
+    // console.log(assignEmail[0].textContent);
+    e.preventDefault();
 
     if(!email.match(regex)) {
 
@@ -63,31 +68,63 @@ form.addEventListener('submit', (e) => {
         e.preventDefault();
         document.querySelector('.error').innerHTML = `<i class="far fa-times-circle"></i> We can't email you if you don't put in an email address!`;
 
-    } if(email.match(regex) && email === email) {
-
+    } if(email.match(regex) && email === email && assignEmail.length === 1) {
         document.querySelector('.error').innerHTML = ``;
         e.preventDefault();
-        document.querySelector('.assigned-email').innerHTML = email;
-        document.querySelector('.assign-to-email').insertAdjacentHTML('beforeend', 
+        document.querySelectorAll('.assigned-email')[0].innerHTML = email;
+        document.querySelectorAll('.assign-to-email')[0].insertAdjacentHTML('beforeend', 
             `<img src="` + img.src + `" alt="thumbnail of emailed image" class="small-img">`
         );
-    } if(email.match(regex) && lastEmail !== email) {
+        document.querySelector('#assigned-wrapper').insertAdjacentHTML('beforeend', 
+        `<div class="assign-to-email">
+            <div class="assigned-email"></div>
+        </div>`
+    );
+    };
+    
+    for (let i= assignEmail.length - 1; i< assignEmail.length; i++) {
+        let lastEmail = assignImg[i].previousSibling.textContent;
+        // i=1 when the for loop fires so this needs to target -1
+        // previoussibling seems to only fire on the third one?
+        // almost works? when entering new email, it creates a new div, but doesn't add to it till the next click
+        // also doesn't read older emails, just the previous one
+        console.log(email);
+        if(email.match(regex) && lastEmail.match(email) && assignEmail.length > 1) {
 
-        let addImg = function () {
+            console.log('fired')
+            document.querySelector('.error').innerHTML = ``;
+            e.preventDefault();
+            document.querySelectorAll('.assigned-email')[i].innerHTML = email;
+            document.querySelectorAll('.assign-to-email')[i].insertAdjacentHTML('beforeend', 
+                `<img src="` + img.src + `" alt="thumbnail of emailed image" class="small-img">`
+            );
+        } if(email.match(regex) && !lastEmail.match(email) && assignEmail.length > 1) {
 
-            document.querySelector('.assign-to-email').insertAdjacentHTML('beforeend', 
+            let addImg = function () {
+
+                document.querySelector('.assign-to-email').insertAdjacentHTML('beforeend', 
+                `<img src="` + img.src + `" alt="thumbnail of emailed image" class="small-img">`
+                );
+            };
+            // not using this anymore for some reason?
+
+            document.querySelector('#assigned-wrapper').insertAdjacentHTML('beforeend', 
+            `<div class="assign-to-email">
+                <div class="assigned-email"></div>
+            </div>`
+            );
+
+            document.querySelector('.error').innerHTML = ``;
+            e.preventDefault();
+
+            assignEmail[i].innerHTML = email;
+            assignImg[i].insertAdjacentHTML('beforeend', 
             `<img src="` + img.src + `" alt="thumbnail of emailed image" class="small-img">`
             );
-        };
 
-        document.querySelector('.error').innerHTML = ``;
-        e.preventDefault();
-        document.querySelector('#assigned-wrapper').insertAdjacentHTML('beforeend', 
-            ` <div class="assign-to-email">
-                <div class="assigned-email">` + email + `</div>`
-               + addImg() +
-            `</div>`
-        );
+            console.log('no');
+            console.log(lastEmail);
+        }
     }
 });
 
