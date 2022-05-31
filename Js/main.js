@@ -51,9 +51,6 @@ form.addEventListener('submit', (e) => {
     const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     let assignEmail = document.querySelectorAll('.assigned-email');
     let assignImg = document.querySelectorAll('.assign-to-email');
-    // console.log(assignEmail.length);
-    // console.log(email);
-    // console.log(assignEmail[0].textContent);
     e.preventDefault();
 
     if(!email.match(regex)) {
@@ -68,64 +65,55 @@ form.addEventListener('submit', (e) => {
         e.preventDefault();
         document.querySelector('.error').innerHTML = `<i class="far fa-times-circle"></i> We can't email you if you don't put in an email address!`;
 
-    } if(email.match(regex) && email === email && assignEmail.length === 1) {
-        document.querySelector('.error').innerHTML = ``;
-        e.preventDefault();
-        document.querySelectorAll('.assigned-email')[0].innerHTML = email;
-        document.querySelectorAll('.assign-to-email')[0].insertAdjacentHTML('beforeend', 
-            `<img src="` + img.src + `" alt="thumbnail of emailed image" class="small-img">`
-        );
-        document.querySelector('#assigned-wrapper').insertAdjacentHTML('beforeend', 
-        `<div class="assign-to-email">
-            <div class="assigned-email"></div>
-        </div>`
-    );
     };
     
-    for (let i= assignEmail.length - 1; i< assignEmail.length; i++) {
-        let lastEmail = assignImg[i].previousSibling.textContent;
-        // i=1 when the for loop fires so this needs to target -1
-        // previoussibling seems to only fire on the third one?
-        // almost works? when entering new email, it creates a new div, but doesn't add to it till the next click
-        // also doesn't read older emails, just the previous one
+    for (let i= 0; i< assignEmail.length; i++) {
+        let lastEmail = assignEmail[i].textContent;
+        // works i think? Probable clean up needed,break seemed to fix most of it, now stops after finding a match
+        // not totally sure i need the function now? 
         console.log(email);
-        if(email.match(regex) && lastEmail.match(email) && assignEmail.length > 1) {
+        let match = function() {
+
+            for (let i= 0; i< assignEmail.length; i++) {
+                
+                if (lastEmail.match(email)) {
+                    return 't'
+                } else {
+                    return 'f'
+                }
+            }
+        };
+        const allFalse = (value) => value === 'f';
+        let matchArray = Array.from(match());
+
+        if(email.match(regex) && lastEmail.match(email)) {
 
             console.log('fired')
             document.querySelector('.error').innerHTML = ``;
             e.preventDefault();
-            document.querySelectorAll('.assigned-email')[i].innerHTML = email;
             document.querySelectorAll('.assign-to-email')[i].insertAdjacentHTML('beforeend', 
                 `<img src="` + img.src + `" alt="thumbnail of emailed image" class="small-img">`
             );
-        } if(email.match(regex) && !lastEmail.match(email) && assignEmail.length > 1) {
+            break
+        } if(email.match(regex) && matchArray.every(allFalse) && i === assignEmail.length - 1) {
 
-            let addImg = function () {
-
-                document.querySelector('.assign-to-email').insertAdjacentHTML('beforeend', 
-                `<img src="` + img.src + `" alt="thumbnail of emailed image" class="small-img">`
+                document.querySelector('#assigned-wrapper').insertAdjacentHTML('beforeend', 
+                `<div class="assign-to-email">
+                    <div class="assigned-email"></div>
+                </div>`
                 );
-            };
-            // not using this anymore for some reason?
-
-            document.querySelector('#assigned-wrapper').insertAdjacentHTML('beforeend', 
-            `<div class="assign-to-email">
-                <div class="assigned-email"></div>
-            </div>`
-            );
 
             document.querySelector('.error').innerHTML = ``;
             e.preventDefault();
 
-            assignEmail[i].innerHTML = email;
-            assignImg[i].insertAdjacentHTML('beforeend', 
+            assignEmail[assignEmail.length - 1].innerHTML = email;
+            assignImg[assignImg.length - 1].insertAdjacentHTML('beforeend', 
             `<img src="` + img.src + `" alt="thumbnail of emailed image" class="small-img">`
             );
 
-            console.log('no');
-            console.log(lastEmail);
-        }
-    }
+                console.log('no');
+                // console.log(lastEmail);
+            }    
+            console.log(matchArray.every(allFalse))
+    } 
 });
-
-//for loop for the cloned assign to email divs?
