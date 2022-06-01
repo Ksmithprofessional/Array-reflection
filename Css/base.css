@@ -1,0 +1,121 @@
+.page-wrapper {
+  margin: 0 auto;
+  width: 80vw;
+  height: 87vh;
+  border: 50px solid black;
+  border-left: 10px solid black;
+  border-right: 10px solid black;
+  border-radius: 1%;
+  overflow-y: auto;
+}
+
+.page-wrapper h1 {
+  text-align: center;
+}
+
+.small-img {
+  display: inline-block;
+  height: 75px;
+  width: 75px;
+  margin: 5px;
+}
+
+.random-img img {
+  margin: 0 auto;
+  display: block;
+}
+
+#assigned-wrapper {
+  background-color: #3f3f3f;
+}
+
+.assigned-email {
+  padding: 20px 10px;
+  color: white;
+  text-transform: uppercase;
+  background-color: #8263a0;
+}
+
+.assign-to-email:last-child .assigned-email {
+  background-color: #3f3f3f;
+}
+
+.author {
+  text-align: center;
+}
+
+.click-btn,
+#submit {
+  display: block;
+  width: 120px;
+  height: 45px;
+  text-align: center;
+  color: white;
+  text-transform: uppercase;
+  margin: 20px auto;
+  cursor: pointer;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-size: 0.9rem;
+}
+
+.click-btn {
+  border: 2px solid #513257;
+  border-radius: 1%;
+  background-color: #a054af;
+  padding-top: 10px;
+}
+
+#submit {
+  border: 2px solid #3f3f3f;
+  border-radius: 1%;
+  background-color: #141414;
+}
+
+#email {
+  text-align: center;
+}
+
+.phone-name {
+  color: white;
+  margin: -35px auto 0;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  letter-spacing: .2rem;
+}
+
+.phone-name:before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border: 1px solid red;
+  border-radius: 50%;
+  background-color: red;
+  display: inline-block;
+  margin-bottom: 2px;
+  margin-right: .2rem;
+}
+
+.phone-name:after {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border: 1px solid #4f4fff;
+  border-radius: 50%;
+  background-color: #4f4fff;
+  display: inline-block;
+  margin-bottom: 2px;
+}
+
+.camera-circle {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle, #1f1f1f 0%, #383838 23%, #606060 67%, #c2c2c2 100%);
+  border: 1px solid gray;
+  border-radius: 50%;
+  margin-left: 65px;
+  margin-bottom: -40px;
+}
+/*# sourceMappingURL=base.css.map */

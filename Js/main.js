@@ -71,7 +71,7 @@ form.addEventListener('submit', (e) => {
         let lastEmail = assignEmail[i].textContent;
         // works i think? Probable clean up needed,break seemed to fix most of it, now stops after finding a match
         // not totally sure i need the function now? 
-        console.log(email);
+        // console.log(email);
         let match = function() {
 
             for (let i= 0; i< assignEmail.length; i++) {
@@ -88,7 +88,7 @@ form.addEventListener('submit', (e) => {
 
         if(email.match(regex) && lastEmail.match(email)) {
 
-            console.log('fired')
+            // console.log('fired')
             document.querySelector('.error').innerHTML = ``;
             e.preventDefault();
             document.querySelectorAll('.assign-to-email')[i].insertAdjacentHTML('beforeend', 
@@ -111,9 +111,9 @@ form.addEventListener('submit', (e) => {
             `<img src="` + img.src + `" alt="thumbnail of emailed image" class="small-img">`
             );
 
-                console.log('no');
+                // console.log('no');
                 // console.log(lastEmail);
             }    
-            console.log(matchArray.every(allFalse))
+            // console.log(matchArray.every(allFalse))
     } 
 });
