@@ -1,16 +1,92 @@
+body {
+  background-color: rgba(107, 98, 110, 0.733);
+}
+
 .page-wrapper {
   margin: 0 auto;
+  margin-top: 10px;
   width: 80vw;
-  height: 87vh;
-  border: 50px solid black;
-  border-left: 10px solid black;
+  height: 90vh;
+  border-bottom: 50px solid black;
   border-right: 10px solid black;
+  border-left: 10px solid black;
+  border-top: 10px solid black;
   border-radius: 1%;
-  overflow-y: auto;
+  overflow-y: hidden;
+  background-color: white;
 }
 
 .page-wrapper h1 {
   text-align: center;
+  font-size: 2.5rem;
+  padding: 0 10px;
+}
+
+.page-wrapper h4 {
+  text-align: center;
+  padding: 0 10px;
+}
+
+.top-bar {
+  height: 40px;
+  background-color: black;
+}
+
+.status-bar {
+  height: 40px;
+  width: inherit;
+  background-color: #2d2d2d;
+  position: relative;
+}
+
+.time {
+  color: white;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 1rem;
+}
+
+.signal {
+  position: absolute;
+  top: 9px;
+  right: 100px;
+  font-size: 1.2rem;
+  color: white;
+}
+
+.signal .fa-signal {
+  margin-left: 15px;
+}
+
+.battery-life {
+  display: none;
+  position: absolute;
+  right: 42px;
+  top: 6px;
+  color: white;
+}
+
+.battery {
+  display: inline-block;
+  position: absolute;
+  right: 20px;
+  top: 5px;
+  color: white;
+}
+
+.battery .fa-battery-quarter {
+  font-size: 2rem;
+}
+
+.battery:hover .battery-life {
+  display: inline-block;
+}
+
+.inner-wrapper {
+  overflow-y: auto;
+  height: 93%;
+  font-family: 'Acme', sans-serif;
 }
 
 .small-img {
@@ -56,14 +132,14 @@
   cursor: pointer;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
 
 .click-btn {
   border: 2px solid #513257;
   border-radius: 1%;
   background-color: #a054af;
-  padding-top: 10px;
+  padding-top: 12px;
 }
 
 #submit {
@@ -76,9 +152,26 @@
   text-align: center;
 }
 
+#email input:focus {
+  border-color: #513257;
+  outline-style: none;
+}
+
+.error {
+  margin: 0 auto;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 5px 15px;
+}
+
+.fa-times-circle {
+  color: red;
+}
+
 .phone-name {
   color: white;
-  margin: -35px auto 0;
+  margin: -23px auto 0;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
@@ -115,7 +208,7 @@
   background: radial-gradient(circle, #1f1f1f 0%, #383838 23%, #606060 67%, #c2c2c2 100%);
   border: 1px solid gray;
   border-radius: 50%;
-  margin-left: 65px;
-  margin-bottom: -40px;
+  margin-left: 15px;
+  margin-top: 4px;
 }
 /*# sourceMappingURL=base.css.map */

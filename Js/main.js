@@ -21,7 +21,7 @@ fetch(url)
 imgChange.addEventListener('click', async () => {
 
     img.src = ''; 
-    author.innerHTML = '<p>Photographer: </p>'
+    author.innerHTML = 'Photographer: '
 
     let infoLink = new Promise((resolve, reject) => {
         fetch(url)
@@ -117,3 +117,33 @@ form.addEventListener('submit', (e) => {
             // console.log(matchArray.every(allFalse))
     } 
 });
+
+// clock (granted i just looked this one up and edited it a little)
+
+function showTime(){
+    let date = new Date();
+    let h = date.getHours(); // 0 - 23
+    let m = date.getMinutes(); // 0 - 59
+    let session = "AM";
+    
+    if(h == 0){
+        h = 12;
+    }
+    
+    if(h > 12){
+        h = h - 12;
+        session = "PM";
+    }
+    
+    h = (h < 10) ? "0" + h : h;
+    m = (m < 10) ? "0" + m : m;
+    
+    let time = h + ":" + m  + " " + session;
+    document.querySelector(".time").innerText = time;
+    document.querySelector(".time").textContent = time;
+    
+    setTimeout(showTime, 1000);
+    
+}
+
+showTime();

@@ -1,19 +1,113 @@
+body {
+
+    background-color: rgba(107, 98, 110, 0.733);
+}
+
 .page-wrapper {
 
     margin: 0 auto;
+    margin-top: 10px;
     width: 80vw;
-    height: 87vh;
-    border: 50px solid black;
-    border-left: 10px solid black;
+    height: 90vh;
+    border-bottom: 50px solid black;
     border-right: 10px solid black;
+    border-left: 10px solid black;
+    border-top: 10px solid black;
+    // border: 10px solid black;
     border-radius: 1%;
-    overflow-y: auto;
+    overflow-y: hidden;
+    // overflow hidden here seems to make the bottom border show up, but blocks off the bar at the bottom
+    background-color: white;
 
     & h1 {
 
         text-align: center;
+        font-size: 2.5rem;
+        padding: 0 10px;
+    }
+
+    & h4 {
+
+        text-align: center;
+        padding: 0 10px;
     }
 }
+
+.top-bar {
+
+    height: 40px;
+    background-color: black;
+}
+
+.status-bar {
+
+    height: 40px;
+    width: inherit;
+    background-color:#2d2d2d;
+    position: relative;
+}
+
+.time {
+
+    color: white;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 1rem;
+}
+
+.signal {
+
+    position: absolute;
+    top: 9px;
+    right: 100px;
+    font-size: 1.2rem;
+    color: white;
+
+    & .fa-signal {
+
+        margin-left: 15px;
+    }
+}
+
+.battery-life {
+
+    display: none;
+    position: absolute;
+    right: 42px;
+    top: 6px;
+    color: white;
+}
+
+.battery {
+
+    display: inline-block;
+    position: absolute;
+    right: 20px;
+    top: 5px;
+    color: white;
+
+    & .fa-battery-quarter {
+
+        font-size: 2rem;
+    }
+
+    &:hover {
+
+        & .battery-life {
+
+            display: inline-block;
+        }
+    }
+}
+
+.inner-wrapper {
+
+    overflow-y: auto;
+    height: 93%;
+    font-family: 'Acme', sans-serif;
+}
+
 .small-img {
 
     display: inline-block;
@@ -73,7 +167,7 @@
     margin: 20px auto;
     cursor: pointer;
     box-sizing: border-box;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
 
 }
 
@@ -82,7 +176,7 @@
     border: 2px solid rgb(81, 50, 87);
     border-radius: 1%;
     background-color: rgb(160, 84, 175);
-    padding-top: 10px;
+    padding-top: 12px;
 }
 
 #submit {
@@ -95,17 +189,30 @@
 #email {
 
     text-align: center;
+
+    & input:focus {
+
+        border-color: #513257;
+        outline-style: none;
+    }
 }
 
 .error {
 
+    margin: 0 auto;
+    width: fit-content;
+    padding: 5px 15px;
+}
 
+.fa-times-circle {
+
+    color: red;
 }
 
 .phone-name {
 
     color: white;
-    margin: -35px auto 0;
+    margin: -23px auto 0;
     width: fit-content;
     letter-spacing: .2rem;
 
@@ -143,7 +250,14 @@
     background: radial-gradient(circle, rgba(31,31,31,1) 0%, rgba(56,56,56,1) 23%, rgba(96,96,96,1) 67%, rgba(194,194,194,1) 100%);
     border: 1px solid gray;
     border-radius: 50%;
-    margin-left: 65px;
-    margin-bottom: -40px;
-    // margin doesn't scale with screen width
+    margin-left: 15px;
+    margin-top: 4px;
 }
+
+// .middle-btn {
+
+//     width: 60px;
+//     height:20px;
+//     border: 1px solid gray;
+//     border-radius: 50%;
+// }
