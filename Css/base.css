@@ -45,6 +45,7 @@ body {
   top: 10px;
   left: 10px;
   font-size: 1rem;
+  font-family: 'Kdam Thmor Pro', sans-serif;
 }
 
 .signal {
@@ -103,6 +104,7 @@ body {
 
 #assigned-wrapper {
   background-color: #3f3f3f;
+  padding: 5px;
 }
 
 .assigned-email {
@@ -110,6 +112,29 @@ body {
   color: white;
   text-transform: uppercase;
   background-color: #8263a0;
+  word-break: break-all;
+}
+
+.left-text {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  max-width: 53%;
+  background-color: #288ebf;
+  border-radius: 4%;
+  margin-bottom: 10px;
+}
+
+.right-text {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  max-width: 53%;
+  background-color: #ecae77;
+  margin-right: 0;
+  margin-left: auto;
+  margin-bottom: 10px;
+  border-radius: 4%;
 }
 
 .assign-to-email:last-child .assigned-email {
@@ -210,5 +235,28 @@ body {
   border-radius: 50%;
   margin-left: 15px;
   margin-top: 4px;
+}
+
+@media screen and (min-width: 1280px) {
+  #assigned-wrapper {
+    width: 50%;
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .main-wrapper {
+    display: block;
+    position: -webkit-sticky;
+    position: sticky;
+    left: 0;
+    top: 0;
+    width: 50%;
+    overflow-y: auto;
+  }
+  .inner-wrapper {
+    position: relative;
+    height: 91%;
+  }
 }
 /*# sourceMappingURL=base.css.map */

@@ -13,7 +13,6 @@ body {
     border-right: 10px solid black;
     border-left: 10px solid black;
     border-top: 10px solid black;
-    // border: 10px solid black;
     border-radius: 1%;
     overflow-y: hidden;
     // overflow hidden here seems to make the bottom border show up, but blocks off the bar at the bottom
@@ -54,6 +53,7 @@ body {
     top: 10px;
     left: 10px;
     font-size: 1rem;
+    font-family: 'Kdam Thmor Pro', sans-serif;
 }
 
 .signal {
@@ -129,6 +129,7 @@ body {
 #assigned-wrapper {
 
     background-color:rgb(63, 63, 63);
+    padding: 5px;
 }
 
 .assigned-email {
@@ -137,6 +138,27 @@ body {
     color: white;
     text-transform: uppercase;
     background-color: rgb(130, 99, 160);
+    word-break: break-all;
+}
+
+.left-text {
+
+    width: fit-content;
+    max-width: 53%;
+    background-color: #288ebf;
+    border-radius: 4%;
+    margin-bottom: 10px;
+}
+
+.right-text {
+
+    width: fit-content;
+    max-width: 53%;
+    background-color: #ecae77;
+    margin-right: 0;
+    margin-left: auto;
+    margin-bottom: 10px;
+    border-radius: 4%;
 }
 
 .assign-to-email {
@@ -254,10 +276,6 @@ body {
     margin-top: 4px;
 }
 
-// .middle-btn {
 
-//     width: 60px;
-//     height:20px;
-//     border: 1px solid gray;
-//     border-radius: 50%;
-// }
+// imports
+@import 'media-queries';

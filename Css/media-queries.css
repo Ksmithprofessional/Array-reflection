@@ -1,0 +1,23 @@
+@media screen and (min-width: 1280px) {
+  #assigned-wrapper {
+    width: 50%;
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .main-wrapper {
+    display: block;
+    position: -webkit-sticky;
+    position: sticky;
+    left: 0;
+    top: 0;
+    width: 50%;
+    overflow-y: auto;
+  }
+  .inner-wrapper {
+    position: relative;
+    height: 91%;
+  }
+}
+/*# sourceMappingURL=media-queries.css.map */

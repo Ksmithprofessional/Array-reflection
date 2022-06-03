@@ -97,11 +97,21 @@ form.addEventListener('submit', (e) => {
             break
         } if(email.match(regex) && matchArray.every(allFalse) && i === assignEmail.length - 1) {
 
+
+            if(i % 2 == 0) {
                 document.querySelector('#assigned-wrapper').insertAdjacentHTML('beforeend', 
-                `<div class="assign-to-email">
+                `<div class="assign-to-email right-text">
                     <div class="assigned-email"></div>
                 </div>`
                 );
+            } else {
+                document.querySelector('#assigned-wrapper').insertAdjacentHTML('beforeend', 
+                `<div class="assign-to-email left-text">
+                    <div class="assigned-email"></div>
+                </div>`
+                );
+
+            }
 
             document.querySelector('.error').innerHTML = ``;
             e.preventDefault();
@@ -136,6 +146,7 @@ function showTime(){
     }
     
     h = (h < 10) ? "0" + h : h;
+    // this line maybe unecessary, check before midday one day.
     m = (m < 10) ? "0" + m : m;
     
     let time = h + ":" + m  + " " + session;
