@@ -158,3 +158,27 @@ function showTime(){
 }
 
 showTime();
+
+
+// image deletion
+// this does actually sort of work? But because of the event listener inside the event listener it multiplies
+// the amount of clicks so it doesn't work properly. Also changing the display to none wouldn't work
+// fully either since the page would struggle to load with all the added images still being there.
+// If i accidentally leave this in then i'm just experimenting and practicing with this bit.
+
+const wrapper = document.querySelector('#assigned-wrapper');
+
+wrapper.addEventListener('click', () => {
+
+    let imgs = document.querySelectorAll('img');
+
+    for (let i= 0; i< imgs.length; i++) {
+        imgs[i].addEventListener('click', () => {
+
+            // imgs.splice(i, 1)
+            console.log(i);
+            imgs[i].style.display = 'none';
+        })
+    }
+
+});
