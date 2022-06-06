@@ -137,8 +137,32 @@ body {
   border-radius: 4%;
 }
 
+.assigned-img {
+  position: relative;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: inline-block;
+}
+
+.assigned-img .fa-times-circle {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+  display: none;
+}
+
+.assign-to-email:last-child {
+  background-color: #3f3f3f;
+}
+
 .assign-to-email:last-child .assigned-email {
   background-color: #3f3f3f;
+}
+
+.assign-to-email img:hover {
+  cursor: pointer;
 }
 
 .author {

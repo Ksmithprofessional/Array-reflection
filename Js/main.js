@@ -91,8 +91,11 @@ form.addEventListener('submit', (e) => {
             // console.log('fired')
             document.querySelector('.error').innerHTML = ``;
             e.preventDefault();
-            document.querySelectorAll('.assign-to-email')[i].insertAdjacentHTML('beforeend', 
-                `<img src="` + img.src + `" alt="thumbnail of emailed image" class="small-img">`
+            assignImg[i].insertAdjacentHTML('beforeend', 
+                `<div class="assigned-img">
+                <i class="far fa-times-circle"></i>
+                <img src="` + img.src + `" alt="thumbnail of emailed image" class="small-img">
+                </div>`
             );
             break
         } if(email.match(regex) && matchArray.every(allFalse) && i === assignEmail.length - 1) {
@@ -118,7 +121,10 @@ form.addEventListener('submit', (e) => {
 
             assignEmail[assignEmail.length - 1].innerHTML = email;
             assignImg[assignImg.length - 1].insertAdjacentHTML('beforeend', 
-            `<img src="` + img.src + `" alt="thumbnail of emailed image" class="small-img">`
+                `<div class="assigned-img">
+                <i class="far fa-times-circle"></i>
+                <img src="` + img.src + `" alt="thumbnail of emailed image" class="small-img">
+                </div>`
             );
 
                 // console.log('no');
@@ -162,23 +168,42 @@ showTime();
 
 // image deletion
 // this does actually sort of work? But because of the event listener inside the event listener it multiplies
-// the amount of clicks so it doesn't work properly. Also changing the display to none wouldn't work
-// fully either since the page would struggle to load with all the added images still being there.
+// the amount of console.logs so it doesn't work properly. It seemed to have some weird issues previously
+// but i think it works better now? Should probably add an 'if div has no images in it then also delete email'?
 // If i accidentally leave this in then i'm just experimenting and practicing with this bit.
 
 const wrapper = document.querySelector('#assigned-wrapper');
 
-wrapper.addEventListener('click', () => {
+wrapper.addEventListener('mouseenter', () => {
 
     let imgs = document.querySelectorAll('img');
+    let cross = document.querySelectorAll('.fa-times-circle');
+    let imgDiv = document.querySelectorAll('.assigned-img');
 
-    for (let i= 0; i< imgs.length; i++) {
+    for (let i= 1; i< imgs.length; i++) {
+
+        imgs[i].style.filter = 'grayscale(100%)';
+        cross[i-1].style.display = 'block';
+
         imgs[i].addEventListener('click', () => {
 
-            // imgs.splice(i, 1)
-            console.log(i);
-            imgs[i].style.display = 'none';
+            // console.log(i);
+            imgDiv[i-1].remove();
+
         })
     }
 
+});
+
+wrapper.addEventListener('mouseleave', () => {
+
+    let imgs = document.querySelectorAll('img');
+    let cross = document.querySelectorAll('.fa-times-circle');
+
+    for (let i= 1; i< imgs.length; i++) {
+
+        imgs[i].style.filter = 'grayscale(0%)';
+        cross[i-1].style.display = 'none';
+
+    }
 });
