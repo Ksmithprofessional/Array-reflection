@@ -31,7 +31,7 @@ imgChange.addEventListener('click', async () => {
                  fetch(resolve)
                 .then(response => response.json())
                 .then( data => {
-                    console.log(data)
+                    // console.log(data)
                     img.src = 'https://picsum.photos/id/' + data.id + '/300/300'
                     author.insertAdjacentHTML('beforeend', data.author)
                 })
@@ -93,7 +93,7 @@ form.addEventListener('submit', (e) => {
             e.preventDefault();
             assignImg[i].insertAdjacentHTML('beforeend', 
                 `<div class="assigned-img">
-                <i class="far fa-times-circle"></i>
+                <i class="fas fa-times"></i>
                 <img src="` + img.src + `" alt="thumbnail of emailed image" class="small-img">
                 </div>`
             );
@@ -122,7 +122,7 @@ form.addEventListener('submit', (e) => {
             assignEmail[assignEmail.length - 1].innerHTML = email;
             assignImg[assignImg.length - 1].insertAdjacentHTML('beforeend', 
                 `<div class="assigned-img">
-                <i class="far fa-times-circle"></i>
+                <i class="fas fa-times"></i>
                 <img src="` + img.src + `" alt="thumbnail of emailed image" class="small-img">
                 </div>`
             );
@@ -169,16 +169,19 @@ showTime();
 // image deletion
 // this does actually sort of work? But because of the event listener inside the event listener it multiplies
 // the amount of console.logs so it doesn't work properly. It seemed to have some weird issues previously
-// but i think it works better now? Should probably add an 'if div has no images in it then also delete email'?
-// If i accidentally leave this in then i'm just experimenting and practicing with this bit.
+// but i think it works better now? The 'if there's no images then delete div' part of this has an unintended
+// effect (it seems to slightly screw up the order of right and left sides) but it's not a major bother 
+// in terms of styling so i think i'll just leave it.
+// I'll leave this bit in but i'm mostly just experimenting and practicing with this bit.
 
 const wrapper = document.querySelector('#assigned-wrapper');
 
 wrapper.addEventListener('mouseenter', () => {
 
     let imgs = document.querySelectorAll('img');
-    let cross = document.querySelectorAll('.fa-times-circle');
+    let cross = document.querySelectorAll('.fa-times');
     let imgDiv = document.querySelectorAll('.assigned-img');
+    let assignImg = document.querySelectorAll('.assign-to-email');
 
     for (let i= 1; i< imgs.length; i++) {
 
@@ -190,6 +193,14 @@ wrapper.addEventListener('mouseenter', () => {
             // console.log(i);
             imgDiv[i-1].remove();
 
+            for (let i= 0; i< assignImg.length; i++) {
+
+                if(assignImg[i].childElementCount === 1 && i !== assignImg.length - 1) {
+
+                    assignImg[i].remove();
+                }
+            }
+
         })
     }
 
@@ -198,7 +209,7 @@ wrapper.addEventListener('mouseenter', () => {
 wrapper.addEventListener('mouseleave', () => {
 
     let imgs = document.querySelectorAll('img');
-    let cross = document.querySelectorAll('.fa-times-circle');
+    let cross = document.querySelectorAll('.fa-times');
 
     for (let i= 1; i< imgs.length; i++) {
 
