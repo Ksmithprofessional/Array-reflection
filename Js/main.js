@@ -188,7 +188,7 @@ wrapper.addEventListener('mouseenter', () => {
         imgs[i].style.filter = 'grayscale(100%)';
         cross[i-1].style.display = 'block';
 
-        imgs[i].addEventListener('click', () => {
+        imgDiv[i -1].addEventListener('click', () => {
 
             // console.log(i);
             imgDiv[i-1].remove();

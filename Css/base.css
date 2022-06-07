@@ -156,6 +156,10 @@ body {
   text-shadow: 1px 1px 0 #000, -1px -1px 0 #000,   1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
+.assigned-img .fa-times:hover {
+  cursor: pointer;
+}
+
 .assign-to-email:last-child {
   background-color: #3f3f3f;
 }
