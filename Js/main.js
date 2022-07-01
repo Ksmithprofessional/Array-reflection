@@ -48,7 +48,8 @@ const form = document.querySelector('form');
 form.addEventListener('submit', (e) => {
 
     let email = document.querySelector('#email input').value;
-    const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    // const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     let assignEmail = document.querySelectorAll('.assigned-email');
     let assignImg = document.querySelectorAll('.assign-to-email');
     e.preventDefault();
@@ -69,6 +70,8 @@ form.addEventListener('submit', (e) => {
     
     for (let i= 0; i< assignEmail.length; i++) {
         let lastEmail = assignEmail[i].textContent;
+        let emailLength = email.length;
+        let lastEmailLength = lastEmail.length;
         // works i think? Probable clean up needed,break seemed to fix most of it, now stops after finding a match
         // not totally sure i need the function now? 
         // console.log(email);
@@ -86,9 +89,10 @@ form.addEventListener('submit', (e) => {
         const allFalse = (value) => value === 'f';
         let matchArray = Array.from(match());
 
-        if(email.match(regex) && lastEmail.match(email)) {
+        if(email.match(regex) && lastEmail.match(email) && emailLength === lastEmailLength) {
 
-            // console.log('fired')
+            // console.log(lastEmailLength)
+            // console.log(emailLength)
             document.querySelector('.error').innerHTML = ``;
             e.preventDefault();
             assignImg[i].insertAdjacentHTML('beforeend', 
