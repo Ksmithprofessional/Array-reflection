@@ -41,6 +41,8 @@ imgChange.addEventListener('click', async () => {
 
 
 //email validation
+// i tried changing the regex to fix the .co/.com issue but that didn't seem to do anything so i matched 
+// the email lengths further down.
 
 const formSubmit = document.querySelector('#submit');
 const form = document.querySelector('form');
@@ -48,8 +50,7 @@ const form = document.querySelector('form');
 form.addEventListener('submit', (e) => {
 
     let email = document.querySelector('#email input').value;
-    // const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     let assignEmail = document.querySelectorAll('.assigned-email');
     let assignImg = document.querySelectorAll('.assign-to-email');
     e.preventDefault();
@@ -91,6 +92,7 @@ form.addEventListener('submit', (e) => {
 
         if(email.match(regex) && lastEmail.match(email) && emailLength === lastEmailLength) {
 
+            // added a check to see whether the emails are the same length to fix .co and .com being the same
             // console.log(lastEmailLength)
             // console.log(emailLength)
             document.querySelector('.error').innerHTML = ``;
