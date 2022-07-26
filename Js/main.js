@@ -87,55 +87,96 @@ form.addEventListener('submit', (e) => {
                 }
             }
         };
+
         const allFalse = (value) => value === 'f';
         let matchArray = Array.from(match());
+        let imgs = document.getElementsByTagName('img');
 
-        if(email.match(regex) && lastEmail.match(email) && emailLength === lastEmailLength) {
+        let imgCheck = function() {
+            if(imgs.length === 1) {
+                return 'empty';
+            }
+            for(let i= 1; i< imgs.length; i++) {
+                let pics = document.querySelectorAll('.assigned-img');
+
+                for (let i= 0; i< pics.length; i++) {
+                    // console.log(pics[i].parentNode.childNodes[1].textContent);
+                    if (pics[i].parentNode.childNodes[1].textContent === email){
+                        let pictures = pics[i].childNodes;
+                        // console.log(pics[i].childNodes);
+                        if (pictures[3].src === imgs[0].src) {
+                        document.querySelector('.error').innerHTML = `<i class="far fa-times-circle"></i> That image has already been added!`;
+                        return 'emailimage';
+                        } if (pictures[3].src !== imgs[0].src) {
+                            // console.log(imgs[i].src);
+                            // console.log(imgs[0].src);
+                        }
+                }
+                } if (!lastEmail.match(email)) {
+                    return 'none';
+                }
+                
+            }
+            
+        }
+        // console.log(imgCheck());
+        
+        // need to get query selector to loop through the assigned images where the assigned email matches email.
+
+
+        if (imgCheck() === 'emailimage') {
+
+            break;
+        } if(email.match(regex) && lastEmail.match(email) && emailLength === lastEmailLength && imgCheck() === undefined ){
 
             // added a check to see whether the emails are the same length to fix .co and .com being the same
+            //emails matching
             // console.log(lastEmailLength)
             // console.log(emailLength)
             document.querySelector('.error').innerHTML = ``;
             e.preventDefault();
+
             assignImg[i].insertAdjacentHTML('beforeend', 
                 `<div class="assigned-img">
                 <i class="fas fa-times"></i>
                 <img src="` + img.src + `" alt="thumbnail of emailed image" class="small-img">
                 </div>`
             );
-            break
-        } if(email.match(regex) && matchArray.every(allFalse) && i === assignEmail.length - 1) {
+            // console.log(false);
+            break;
+        } if(email.match(regex) && matchArray.every(allFalse) && i === assignEmail.length - 1 && (imgCheck() === 'none' || imgCheck() === 'empty')) {
+            
+            //emails not matching
+        
+                if(i % 2 == 0) {
+                    document.querySelector('#assigned-wrapper').insertAdjacentHTML('beforeend', 
+                    `<div class="assign-to-email right-text">
+                        <div class="assigned-email"></div>
+                    </div>`
+                    );
+                } else {
+                    document.querySelector('#assigned-wrapper').insertAdjacentHTML('beforeend', 
+                    `<div class="assign-to-email left-text">
+                        <div class="assigned-email"></div>
+                    </div>`
+                    );
 
+                }
 
-            if(i % 2 == 0) {
-                document.querySelector('#assigned-wrapper').insertAdjacentHTML('beforeend', 
-                `<div class="assign-to-email right-text">
-                    <div class="assigned-email"></div>
-                </div>`
+                document.querySelector('.error').innerHTML = ``;
+                e.preventDefault();
+
+                assignEmail[assignEmail.length - 1].innerHTML = email;
+                assignImg[assignImg.length - 1].insertAdjacentHTML('beforeend', 
+                    `<div class="assigned-img">
+                    <i class="fas fa-times"></i>
+                    <img src="` + img.src + `" alt="thumbnail of emailed image" class="small-img">
+                    </div>`
                 );
-            } else {
-                document.querySelector('#assigned-wrapper').insertAdjacentHTML('beforeend', 
-                `<div class="assign-to-email left-text">
-                    <div class="assigned-email"></div>
-                </div>`
-                );
 
-            }
-
-            document.querySelector('.error').innerHTML = ``;
-            e.preventDefault();
-
-            assignEmail[assignEmail.length - 1].innerHTML = email;
-            assignImg[assignImg.length - 1].insertAdjacentHTML('beforeend', 
-                `<div class="assigned-img">
-                <i class="fas fa-times"></i>
-                <img src="` + img.src + `" alt="thumbnail of emailed image" class="small-img">
-                </div>`
-            );
-
-                // console.log('no');
-                // console.log(lastEmail);
-            }    
+                    // console.log('no');
+                    // console.log(lastEmail);
+                }    
             // console.log(matchArray.every(allFalse))
     } 
 });
