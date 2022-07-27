@@ -104,12 +104,17 @@ form.addEventListener('submit', (e) => {
                     if (pics[i].parentNode.childNodes[1].textContent === email){
                         let pictures = pics[i].childNodes;
                         // console.log(pics[i].childNodes);
+                        // absolute horrendous code. I would be interested to see if i could simplify this
+                        // but for now, it loops through each assigned img, goes up to the container
+                        // then back down to the email assinged to it to check what email is assigned to each img.
                         if (pictures[3].src === imgs[0].src) {
-                        document.querySelector('.error').innerHTML = `<i class="far fa-times-circle"></i> That image has already been added!`;
-                        return 'emailimage';
+                            //pictures[3] here is just a byproduct of the childnodes used. That's just the location of the image source.
+                            document.querySelector('.error').innerHTML = `<i class="far fa-times-circle"></i> That image has already been added!`;
+                            return 'emailimage';
                         } if (pictures[3].src !== imgs[0].src) {
                             // console.log(imgs[i].src);
                             // console.log(imgs[0].src);
+                            // this is empty so it can loop through everything. If it doesn't find anything then it'll return undefined.
                         }
                 }
                 } if (!lastEmail.match(email)) {
@@ -120,12 +125,9 @@ form.addEventListener('submit', (e) => {
             
         }
         // console.log(imgCheck());
-        
-        // need to get query selector to loop through the assigned images where the assigned email matches email.
-
-
+    
         if (imgCheck() === 'emailimage') {
-
+            //not sure i need this but slightly afraid to change anything if it works.
             break;
         } if(email.match(regex) && lastEmail.match(email) && emailLength === lastEmailLength && imgCheck() === undefined ){
 
